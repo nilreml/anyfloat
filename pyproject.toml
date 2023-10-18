@@ -9,7 +9,7 @@
 target-version = 'py39'
 
 select = [
-  # TODO: enable remaining checks one-at-a-time and fix findings
+  # TODO: enable remaining checks
   'I',  # isort (unused imports and sorting)
   'N',  # pep8-naming
   'F',  # pyflakes
@@ -39,7 +39,7 @@ select = [
   'EXE', # flake8-executable
   'ISC', # flake8-implicit-str-concat
   'ICN', # flake8-import-conventions (python import conventions)
-  #'G',   # flake8-logging-format # Wait for newer Python version, see https://stackoverflow.com/questions/54367975/python-3-7-logging-f-strings-vs
+  #'G',   # flake8-logging-format # wait for newer Python version, see https://stackoverflow.com/questions/54367975/python-3-7-logging-f-strings-vs
   #'INP', # flake8-no-pep420
   'PIE', # flake8-pie
   #'T20', # flake8-print
@@ -112,7 +112,7 @@ warn_unused_configs = true
 warn_unused_ignores = true
 warn_redundant_casts = true
 explicit_package_bases = true
-#mypy_path = "src:anyfloat"
+# mypy_path = "src:anyfloat"
 packages = ['anyfloat']
 
 [tool.pyright]

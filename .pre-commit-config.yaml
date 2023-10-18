@@ -38,14 +38,12 @@ repos:
       - id: sort-simple-yaml
       - id: trailing-whitespace
 
-  # Python autoformatter
   - repo: https://github.com/pre-commit/mirrors-autopep8
     rev: v2.0.4
     hooks:
       - id: autopep8
         name: autoformat python (autopep8)
 
-  # Python linter
   - repo: https://github.com/charliermarsh/ruff-pre-commit
     rev: "v0.1.0"
     hooks:
@@ -53,7 +51,6 @@ repos:
         name: lint and fix python (ruff)
         args: [--show-fixes, --fix, --exit-non-zero-on-fix]
 
-  # Python typechecker
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: "v1.6.1"
     hooks:
@@ -64,7 +61,6 @@ repos:
         args: [] # disable default --ignore-missing-imports
         additional_dependencies: []
 
-  # Python unit tests
   - repo: local
     hooks:
       - id: pytest
