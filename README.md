@@ -11,9 +11,10 @@ pip install anyfloat
 ```
 
 ```python
->>> FP13 = FloatingPointSpec(num_mantissa_bits=6, num_exponent_bits=5)
->>> FP13.float_from_bitstring('010000010000')
-2.5
+>>> from anyfloat import FloatingPointSpec
+>>> FP13 = FloatingPointSpec(num_mantissa_bits=7, num_exponent_bits=5)
+>>> print(FP13.float_from_bitstring('0100000010000'))
+3.0
 ```
 
 For more examples, see `examples/`.

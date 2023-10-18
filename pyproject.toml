@@ -76,7 +76,7 @@ unfixable = [
 inline-quotes = 'single'
 
 [tool.ruff.flake8-unused-arguments]
-ignore-variadic-names = true # Ignore unused *args and **kwargs -> standard practice
+ignore-variadic-names = true # Ignore unused *args and **kwargs -> standard practice, required to disable positional arguments
 
 [tool.ruff.mccabe]
 max-complexity = 10

@@ -1,9 +1,6 @@
-#!/usr/bin/env python3
-
 from typing import Optional
 
-from anyfloat.math import bits_from_float, float_from_bits
-from anyfloat.util import is_power_of_two
+from .math import bits_from_float, float_from_bits
 
 
 class FloatingPointSpec:
@@ -27,7 +24,6 @@ class FloatingPointSpec:
                  num_mantissa_bits: int,
                  num_exponent_bits: int,
                  exponent_bias: Optional[int] = None,
-                 ensure_power_of_two_storage: bool = False,
                  ) -> None:
         """
         Specification for arbitrary precision floating point numbers.
@@ -36,11 +32,7 @@ class FloatingPointSpec:
             num_mantissa_bits           : Number of stored bits in mantissa(excluding the implicit leading bit)
             num_exponent_bits           : Number of stored bits in exponent
             exponent_bias               : Bias of exponent (negative, default follows IEEE-754 rules)
-            ensure_power_of_two_storage : Ensure that number of storage bits is a power of two(1 + num_mantissa_bits + num_exponent_bits)
         """
-
-        if ensure_power_of_two_storage and not is_power_of_two(num_exponent_bits + num_mantissa_bits + 1):
-            ValueError('num_exponent_bits + num_mantissa_bits + 1 is not a power of two')
 
         if exponent_bias:
             self.exponent_bias = exponent_bias
@@ -75,8 +67,8 @@ class FloatingPointSpec:
     def float_from_bitstring(self, bitstring: str) -> float:
         return float_from_bits(
             sign_bit=bitstring[0],
-            mantissa_bits=bitstring[1:1 + self.num_exponent_bits],
-            exponent_bits=bitstring[1 + self.num_exponent_bits:],
+            mantissa_bits=bitstring[1:1 + self.num_mantissa_bits],
+            exponent_bits=bitstring[1 + self.num_mantissa_bits:],
             num_mantissa_bits=self.num_mantissa_bits,
             num_exponent_bits=self.num_exponent_bits,
             exponent_bias=self.exponent_bias,
@@ -112,11 +104,3 @@ class FloatingPointSpec:
         """
 
         return self.bitstrings_from_float(x)[0]
-
-
-FP64 = FloatingPointSpec(num_mantissa_bits=52, num_exponent_bits=11, ensure_power_of_two_storage=True)
-FP32 = FloatingPointSpec(num_mantissa_bits=23, num_exponent_bits=8, ensure_power_of_two_storage=True)
-FP16 = FloatingPointSpec(num_mantissa_bits=10, num_exponent_bits=5, ensure_power_of_two_storage=True)
-BF16 = FloatingPointSpec(num_mantissa_bits=7, num_exponent_bits=8, ensure_power_of_two_storage=True)
-FP8_E5M2 = FloatingPointSpec(num_mantissa_bits=2, num_exponent_bits=5, ensure_power_of_two_storage=True)
-FP8_E4M3 = FloatingPointSpec(num_mantissa_bits=3, num_exponent_bits=4, ensure_power_of_two_storage=True)
