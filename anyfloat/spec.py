@@ -126,4 +126,5 @@ class FloatingPointSpec:
             sign_bit + mantissa_bits + exponent_bits
         """
 
-        return self.bitstrings_from_float(x)[0]
+        s, m, e = self.bitstrings_from_float(x)
+        return s + m + e

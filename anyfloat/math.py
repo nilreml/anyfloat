@@ -123,8 +123,8 @@ def bits_from_float(*,
         mantissa *= 2.0
         mantissa_bias = 1.0
 
-    print(f'mantissa : {mantissa:.16e}')
-    print(f'exponent : {exponent}')
+    # print(f'mantissa : {mantissa:.16e}')
+    # print(f'exponent : {exponent}')
 
     # TODO: flip sign of exponent bias
 
