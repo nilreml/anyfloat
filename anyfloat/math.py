@@ -97,6 +97,8 @@ def bits_from_float(*,
     # exponent_max = 2 ** num_exponent_bits - 1  # max encodable, ignoring bias
     mantissa_max = 2 ** num_mantissa_bits - 1  # max encodable, ignoring bias
 
+    # TODO: handle underflow
+    # TODO: handle overflow
     # # Handle exponent underflow
     # if exponent < 0:
     #     exponent = 0

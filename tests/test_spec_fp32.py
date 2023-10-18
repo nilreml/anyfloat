@@ -1,13 +1,12 @@
-
 import math
 
-from floatingpoint import FP32
+from anyfloat import FP32
 
 
 def test_float_from_bitstrings_positive_infinity():
     sign_bit = '0'
-    exponent_bits = '11111111'
     mantissa_bits = '00000000000000000000000'
+    exponent_bits = '11111111'
 
     result = FP32.float_from_bitstrings(
         s=sign_bit,
@@ -20,8 +19,8 @@ def test_float_from_bitstrings_positive_infinity():
 
 def test_float_from_bitstrings_negative_infinity():
     sign_bit = '1'
-    exponent_bits = '11111111'
     mantissa_bits = '00000000000000000000000'
+    exponent_bits = '11111111'
 
     result = FP32.float_from_bitstrings(
         s=sign_bit,
@@ -34,8 +33,8 @@ def test_float_from_bitstrings_negative_infinity():
 
 def test_float_from_bitstrings_positive_nan():
     sign_bit = '0'
-    exponent_bits = '11111111'
     mantissa_bits = '00000000000000000000001'
+    exponent_bits = '11111111'
 
     result = FP32.float_from_bitstrings(
         s=sign_bit,
@@ -48,8 +47,8 @@ def test_float_from_bitstrings_positive_nan():
 
 def test_float_from_bitstrings_negative_nan():
     sign_bit = '1'
-    exponent_bits = '11111111'
     mantissa_bits = '00000000000000000000001'
+    exponent_bits = '11111111'
 
     result = FP32.float_from_bitstrings(
         s=sign_bit,
@@ -58,3 +57,7 @@ def test_float_from_bitstrings_negative_nan():
     )
 
     assert math.isnan(result)
+
+# TODO: implement and test denormalized floats
+
+# TODO: add parametric tests

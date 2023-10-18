@@ -1,6 +1,6 @@
 # anyfloat
 
-This Python package allows working with arbitrary* precision floating point numbers and their bit-level representations following IEEE-754 rules.
+Python package for working with arbitrary* precision floating point numbers and their bit-level representations following IEEE-754 rules.
 
 *: currently limited by machine precision, usually 64 bit
 
