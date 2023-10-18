@@ -1,4 +1,4 @@
-from floatingpoint import FloatingPointSpec
+from anyfloat import FloatingPointSpec
 
 # FP4 = FloatingPointSpec(num_mantissa_bits=1, num_exponent_bits=2)
 # x = FP4.float_from_bitstrings(s='0', m='1', e='10')

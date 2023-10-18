@@ -112,8 +112,8 @@ warn_unused_configs = true
 warn_unused_ignores = true
 warn_redundant_casts = true
 explicit_package_bases = true
-#mypy_path = "src:floatingpoint"
-packages = ['floatingpoint']
+#mypy_path = "src:anyfloat"
+packages = ['anyfloat']
 
 [tool.pyright]
 reportTypedDictNotRequiredAccess = false

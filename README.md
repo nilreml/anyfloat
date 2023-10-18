@@ -1,4 +1,4 @@
-# Arbitrary precision floating point numbers
+# anyfloat
 
 This Python package allows working with arbitrary* precision floating point numbers and their bit-level representations following IEEE-754 rules.
 
@@ -7,7 +7,7 @@ This Python package allows working with arbitrary* precision floating point numb
 ## Usage
 
 ```bash
-pip install floatingpoint
+pip install anyfloat
 ```
 
 ```python
@@ -20,15 +20,9 @@ For more examples, see `examples/`.
 
 ## Development
 
-### Quick start using devcontainers (preferred)
+### Quick start
 
-Create an empty workspace using an [IDE with devcontainers support](https://containers.dev/supporting) and add this repository's folder.
-
-The devcontainer will automatically be built and managed by your IDE.
-
-### Otherwise
-
-> Using a [Python virtual environment](https://docs.python.org/3/tutorial/venv.html) is recommended.
+> Using a [Python virtual environment](https://docs.python.org/3/tutorial/venv.html) is recommended
 
 Install requirements:
 
@@ -37,7 +31,7 @@ pip install -r requirements.txt
 pip install -r requirements-dev.txt
 ```
 
-Install this module in editable mode:
+Install this package in editable mode:
 
 ```bash
 pip install -e .

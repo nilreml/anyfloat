@@ -1,5 +1,5 @@
-from floatingpoint.math import bits_from_float, float_from_bits
-from floatingpoint.spec import (
+from anyfloat.math import bits_from_float, float_from_bits
+from anyfloat.spec import (
     BF16,
     FP8_E4M3,
     FP8_E5M2,

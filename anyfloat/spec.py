@@ -2,8 +2,8 @@
 
 from typing import Optional
 
-from floatingpoint.math import bits_from_float, float_from_bits
-from floatingpoint.util import is_power_of_two
+from anyfloat.math import bits_from_float, float_from_bits
+from anyfloat.util import is_power_of_two
 
 
 class FloatingPointSpec:
