@@ -1,14 +1,14 @@
 from math import copysign, frexp
 
 
-def float_from_bits(*,
-                    sign_bit: str,
-                    mantissa_bits: str,
-                    exponent_bits: str,
-                    num_mantissa_bits: int,
-                    num_exponent_bits: int,
-                    exponent_bias: int,
-                    ) -> float:
+def floats_from_bits(*,
+                     sign_bit: str,
+                     mantissa_bits: str,
+                     exponent_bits: str,
+                     num_mantissa_bits: int,
+                     num_exponent_bits: int,
+                     exponent_bias: int,
+                     ) -> tuple[float, int, float, int]:
     """
     Assemble an arbitrary precision floating point number from it's components following IEEE-754 rules.
 
@@ -22,6 +22,9 @@ def float_from_bits(*,
 
     Returns:
         result             : Assembled floating point number
+        sign               : '1' for positive, '-1' for negative
+        mantissa           : Encoded mantissa of floating point number
+        exponent           : Encoded exponent of floating point number
     """
 
     if sign_bit not in ['0', '1']:
@@ -58,15 +61,11 @@ def float_from_bits(*,
         else:
             result = float('nan')
 
-    # Handle zero (for debug display only):
+    # Handle zero:
     if mantissa == 0.0:
         exponent = 0
 
-    # print(f"sign     : {sign}")
-    print(f'mantissa : {mantissa:.16e}')
-    print(f'exponent : {exponent}')
-
-    return result
+    return result, sign, mantissa, exponent
 
 
 def bits_from_float(*,

@@ -1,6 +1,6 @@
 from typing import Optional
 
-from .math import bits_from_float, float_from_bits
+from .math import bits_from_float, floats_from_bits
 
 
 class FloatingPointSpec:
@@ -42,7 +42,7 @@ class FloatingPointSpec:
         self.num_mantissa_bits = num_mantissa_bits
         self.num_exponent_bits = num_exponent_bits
 
-    def float_from_bitstrings(self, s: str, m: str, e: str) -> float:
+    def floats_from_bitstrings(self, s: str, m: str, e: str) -> tuple[float, int, float, int]:
         """
         Assemble an arbitrary precision floating point number from it's components following IEEE-754 rules where possible.
 
@@ -52,10 +52,13 @@ class FloatingPointSpec:
             e : Bit representation of exponent (length = num_exponent_bits)
 
         Returns:
-            Assembled floating point number
+            result             : Assembled floating point number
+            sign               : '1' for positive, '-1' for negative
+            mantissa           : Encoded mantissa of floating point number
+            exponent           : Encoded exponent of floating point number
         """
 
-        return float_from_bits(
+        return floats_from_bits(
             sign_bit=s,
             mantissa_bits=m,
             exponent_bits=e,
@@ -64,8 +67,20 @@ class FloatingPointSpec:
             exponent_bias=self.exponent_bias,
         )
 
-    def float_from_bitstring(self, bitstring: str) -> float:
-        return float_from_bits(
+    def floats_from_bitstring(self, bitstring: str) -> tuple[float, int, float, int]:
+        """
+        Assemble an arbitrary precision floating point number from it's components following IEEE-754 rules where possible.
+
+        Args:
+            bitstring : sign_bit + mantissa_bits + exponent_bits
+
+        Returns:
+            result             : Assembled floating point number
+            sign               : '1' for positive, '-1' for negative
+            mantissa           : Encoded mantissa of floating point number
+            exponent           : Encoded exponent of floating point number
+        """
+        return floats_from_bits(
             sign_bit=bitstring[0],
             mantissa_bits=bitstring[1:1 + self.num_mantissa_bits],
             exponent_bits=bitstring[1 + self.num_mantissa_bits:],
@@ -73,6 +88,12 @@ class FloatingPointSpec:
             num_exponent_bits=self.num_exponent_bits,
             exponent_bias=self.exponent_bias,
         )
+
+    def float_from_bitstrings(self, *, s: str, m: str, e: str) -> float:
+        return self.floats_from_bitstrings(s=s, m=m, e=e)[0]
+
+    def float_from_bitstring(self, bitstring: str) -> float:
+        return self.floats_from_bitstring(bitstring)[0]
 
     def bitstrings_from_float(self, x: float) -> tuple[str, str, str]:
         """
@@ -82,7 +103,9 @@ class FloatingPointSpec:
             x : Floating point number to disassemble
 
         Returns:
-            sign_bit, mantissa_bits, exponent_bits
+            sign_bit      : '1' for positive, '0' for negative
+            mantissa_bits : Bit representation of mantissa (length = num_mantissa_bits)
+            exponent_bits : Bit representation of exponent (length = num_exponent_bits)
         """
 
         return bits_from_float(
@@ -97,10 +120,10 @@ class FloatingPointSpec:
         Disassemble an arbitrary precision floating point number into it's components following IEEE-754 rules where possible.
 
         Args:
-            number: Floating point number to disassemble
+            x : Floating point number to disassemble
 
         Returns:
-            bitstring
+            sign_bit + mantissa_bits + exponent_bits
         """
 
         return self.bitstrings_from_float(x)[0]

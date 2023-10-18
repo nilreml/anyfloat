@@ -11,9 +11,15 @@ pip install anyfloat
 ```
 
 ```python
+>>> from anyfloat import FP8_E4M3
+>>> FP8_E4M3.float_from_bitstring('01001000')
+3.0
+```
+
+```python
 >>> from anyfloat import FloatingPointSpec
 >>> FP13 = FloatingPointSpec(num_mantissa_bits=7, num_exponent_bits=5)
->>> print(FP13.float_from_bitstring('0100000010000'))
+>>> FP13.float_from_bitstring('0100000010000')
 3.0
 ```
 
@@ -38,7 +44,7 @@ Install this package in editable mode:
 pip install -e .
 ```
 
-Install [pre-commit](https://pre-commit.com) hooks (recommended):
+Install [pre-commit](https://pre-commit.com) hooks:
 
 ```bash
 pre-commit install
